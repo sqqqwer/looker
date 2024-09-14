@@ -1,12 +1,12 @@
 from django.contrib import admin
 
-from models import PostLook, ClothesItem
+from models import Outfit, ClothesItem
 
 
 class ClothesItemInLineAdmin(admin.TabularInline):
     model = ClothesItem
 
 
-@admin.register(PostLook)
-class PostLookAdmin(PostLook):
+@admin.register(Outfit)
+class OutfitAdmin(Outfit):
     inlines = [ClothesItemInLineAdmin]

@@ -2,8 +2,8 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 
-POSTLOOK_TITLE_MAX_LENGTH = 256
-POSTLOOK_STR_OUTPUT_LIMIT = 10
+OUTFIT_TITLE_MAX_LENGTH = 256
+OUTFIT_STR_OUTPUT_LIMIT = 10
 
 CLOTHESITEM_TITLE_MAX_LENGTH = 100
 CLOTHESITEM_STR_OUTPUT_LIMIT = 10
@@ -11,7 +11,7 @@ CLOTHESITEM_STR_OUTPUT_LIMIT = 10
 User = get_user_model()
 
 
-class PostLook(models.Model):
+class Outfit(models.Model):
     created_at = models.DateTimeField('Добавлено', auto_now_add=True)
     publication_date = models.DateTimeField('Дата и время публикации')
     is_published = models.BooleanField('Опубликовано', default=True)
@@ -20,7 +20,7 @@ class PostLook(models.Model):
                               upload_to='postlook_image',
                               blank=True)
     title = models.CharField('Название',
-                             max_length=POSTLOOK_TITLE_MAX_LENGTH)
+                             max_length=OUTFIT_TITLE_MAX_LENGTH)
     description = models.TextField('Описание')
 
     author = models.ForeignKey(User,
@@ -35,7 +35,7 @@ class PostLook(models.Model):
         ordering = ('-publication_date',)
 
     def __str__(self):
-        return self.title[:POSTLOOK_STR_OUTPUT_LIMIT]
+        return self.title[:OUTFIT_STR_OUTPUT_LIMIT]
 
 
 class ClothesItem(models.Models):
