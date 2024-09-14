@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from models import Outfit, ClothesItem
+from .models import Outfit, ClothesItem
 
 
 class ClothesItemInLineAdmin(admin.TabularInline):
@@ -8,5 +8,5 @@ class ClothesItemInLineAdmin(admin.TabularInline):
 
 
 @admin.register(Outfit)
-class OutfitAdmin(Outfit):
+class OutfitAdmin(admin.ModelAdmin):
     inlines = [ClothesItemInLineAdmin]

@@ -13,9 +13,9 @@ User = get_user_model()
 
 class Outfit(models.Model):
     created_at = models.DateTimeField('Добавлено', auto_now_add=True)
-    publication_date = models.DateTimeField('Дата и время публикации')
     is_published = models.BooleanField('Опубликовано', default=True)
 
+    publication_date = models.DateTimeField('Дата и время публикации')
     image = models.ImageField('Изображение',
                               upload_to='postlook_image',
                               blank=True)
@@ -30,7 +30,7 @@ class Outfit(models.Model):
     class Meta:
         verbose_name = 'публикация образа'
         verbose_name_plural = 'Публикации образов'
-        default_related_name = 'postlooks'
+        default_related_name = 'outfit'
 
         ordering = ('-publication_date',)
 
@@ -38,14 +38,15 @@ class Outfit(models.Model):
         return self.title[:OUTFIT_STR_OUTPUT_LIMIT]
 
 
-class ClothesItem(models.Models):
+class ClothesItem(models.Model):
     title = models.CharField('Название',
-                             max_length=CLOTHESITEM_TITLE_MAX_LENGTH,
-                             on_delete=models.CASCADE,
-                             verbose_name='Одежда образа')
+                             max_length=CLOTHESITEM_TITLE_MAX_LENGTH)
+    url = models.URLField('Ссылка')
 
-    postlook = models.ForeignKey()
-
+    outfit = models.ForeignKey(Outfit,
+                               on_delete=models.CASCADE,
+                               verbose_name='Одежда образа')
+    cost = models.PositiveIntegerField('Цена')
     order_number = models.PositiveSmallIntegerField(default=10)
 
     class Meta:
