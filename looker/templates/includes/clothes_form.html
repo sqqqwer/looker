@@ -1,0 +1,8 @@
+{% load django_bootstrap5 %}
+<div hx-target="this" hx-swap="outerHTML">
+  <form method="post" action="{% url 'blog:clothes-create' outfit_id %}">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button hx-post="{% url 'blog:clothes-create' outfit_id %}" type="submit">Сохранить</button>
+  </form>
+</div>

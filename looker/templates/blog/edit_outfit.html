@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block title %}Формы{% endblock %}
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content="Сохранить" %}
+  </form>
+  <div id="clothes-form-container">
+  </div>
+  <button class="btn btn-secondary" hx-get="{% url 'blog:clothes-create-form' outfit.id %}" hx-swap="beforeend" hx-target="#clothes-form-container">
+    Добавить одежду
+  </button>
+{% endblock %}

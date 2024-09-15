@@ -6,9 +6,9 @@ from .models import Outfit, ClothesItem
 class OutfitForm(ModelForm):
     class Meta:
         model = Outfit
-        exclude = ('created_at', 'is_published')
+        exclude = ('created_at', 'is_published', 'author')
         widgets = {
-            'pub_date': DateTimeInput(
+            'publication_date': DateTimeInput(
                 format='%Y-%m-%dT%H:%M:%S',
                 attrs={'type': 'datetime-local'}
             )

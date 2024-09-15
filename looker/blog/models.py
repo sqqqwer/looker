@@ -15,13 +15,15 @@ class Outfit(models.Model):
     created_at = models.DateTimeField('Добавлено', auto_now_add=True)
     is_published = models.BooleanField('Опубликовано', default=True)
 
-    publication_date = models.DateTimeField('Дата и время публикации')
+    publication_date = models.DateTimeField('Дата и время публикации',
+                                            blank=True)
     image = models.ImageField('Изображение',
                               upload_to='postlook_image',
                               blank=True)
     title = models.CharField('Название',
                              max_length=OUTFIT_TITLE_MAX_LENGTH)
-    description = models.TextField('Описание')
+    description = models.TextField('Описание',
+                                   blank=True)
 
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
@@ -46,7 +48,7 @@ class ClothesItem(models.Model):
     outfit = models.ForeignKey(Outfit,
                                on_delete=models.CASCADE,
                                verbose_name='Одежда образа')
-    cost = models.PositiveIntegerField('Цена')
+    cost = models.PositiveIntegerField('Цена', default=10)
     order_number = models.PositiveSmallIntegerField(default=10)
 
     class Meta:
