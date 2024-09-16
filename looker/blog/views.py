@@ -10,6 +10,7 @@ from .models import Outfit, ClothesItem
 User = get_user_model()
 # class HomePage(ListView):
 
+
 def home_page(request):
     template = 'blog/homepage.html'
     return render(request, template)
@@ -25,7 +26,6 @@ def outfit_create(request):
                 form.instance.publication_date = timezone.now()
             form.save()
             return redirect('blog:edit', form.instance.pk)
-
     context = {
         'form': form,
     }
@@ -36,7 +36,12 @@ def outfit_edit(request, outfit_id):
     template = 'blog/edit_outfit.html'
     instance = get_object_or_404(Outfit, pk=outfit_id)
     form = OutfitForm(request.POST or None, instance=instance)
-
+    if request.htmx:
+        template = 'includes/full_edit_outfit.html'
+    if request.method == 'POST':
+        template = 'includes/edit_outfit_form.html'
+        if form.is_valid():
+            form.save()
     context = {
         'form': form,
         'outfit': instance
