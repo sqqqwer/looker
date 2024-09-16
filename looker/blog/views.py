@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.http import Http404
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView
@@ -53,6 +54,8 @@ def outfit_edit(request, outfit_id):
 
 
 def outfit_edit_clothes_detail(request, clothes_id):
+    if not request.htmx:
+        raise Http404('Page Not Found')
     template = 'includes/clothes_detail.html'
     clothes = get_object_or_404(ClothesItem, pk=clothes_id)
     context = {
@@ -62,6 +65,8 @@ def outfit_edit_clothes_detail(request, clothes_id):
 
 
 def clothes_create(request, outfit_id):
+    if not request.htmx:
+        raise Http404('Page Not Found')
     template = 'includes/clothes_create_form.html'
     outfit = get_object_or_404(Outfit, pk=outfit_id)
     form = ClothesItemForm(request.POST or None)
@@ -80,6 +85,8 @@ def clothes_create(request, outfit_id):
 
 
 def clothes_edit(request, clothes_id):
+    if not request.htmx:
+        raise Http404('Page Not Found')
     template = 'includes/clothes_edit_form.html'
     clothes = get_object_or_404(ClothesItem, pk=clothes_id)
     form = ClothesItemForm(request.POST or None, instance=clothes)
@@ -96,6 +103,8 @@ def clothes_edit(request, clothes_id):
 
 
 def clothes_delete(request, clothes_id):
+    if not request.htmx:
+        raise Http404('Page Not Found')
     template = 'includes/clothes_delete_quote.html'
     clothes = get_object_or_404(ClothesItem, pk=clothes_id)
     form = ClothesItemForm(instance=clothes)
