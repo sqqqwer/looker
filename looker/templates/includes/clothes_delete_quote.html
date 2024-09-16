@@ -1,0 +1,10 @@
+<div hx-target="this" hx-swap="outerHTML">
+  {% with clothes=form.instance %}
+    <form method="post" action="{% url 'blog:clothes-delete' clothes.id %}">
+      {% csrf_token %}
+      <h5 class="card-title">Хотите удалить {{ clothes.title }}?</h5>
+      <button class="btn btn-primary" hx-post="{% url 'blog:clothes-delete' clothes.id %}" type="submit">Удалить</button>
+      <button class="btn btn-primary" hx-get="{% url 'blog:clothes-detail' clothes.id %}">Отмена</button>
+    </form>
+  {% endwith %}
+</div>

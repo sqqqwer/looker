@@ -1,13 +1,17 @@
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img class="img-fluid rounded-start">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{ clothes.title }}</h5>
-        <p class="card-text">Цена: {{ clothes.cost }}</p>
-        <p class="card-text"><a>Ссылка</a></p>
+<div hx-target="this" hx-swap="outerHTML">
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img class="img-fluid rounded-start">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ clothes.title }}</h5>
+          <p class="card-text">Цена: {{ clothes.cost }}</p>
+          <p class="card-text"><a>Ссылка</a></p>
+          <button class="btn btn-primary" hx-get="{% url 'blog:clothes-edit' clothes.id %}" type="submit">Редактировать</button>
+          <button class="btn btn-primary" hx-get="{% url 'blog:clothes-delete' clothes.id %}" type="submit">Удалить</button>
+        </div>
       </div>
     </div>
   </div>

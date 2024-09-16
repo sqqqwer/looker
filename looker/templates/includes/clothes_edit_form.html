@@ -1,0 +1,11 @@
+{% load django_bootstrap5 %}
+<div hx-target="this" hx-swap="outerHTML">
+  {% with clothes=form.instance %}
+    <form method="post" action="{% url 'blog:clothes-edit' clothes.id %}">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      Выберите картинку написав её номер на сайте
+      <button class="btn btn-primary" hx-post="{% url 'blog:clothes-edit' clothes.id %}" type="submit">Сохранить</button>
+    </form>
+  {% endwith %}
+</div>

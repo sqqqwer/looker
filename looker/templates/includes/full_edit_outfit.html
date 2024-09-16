@@ -1,6 +1,9 @@
 {% include "includes/edit_outfit_form.html" %}
 <div id="clothes-form-container">
+  {% for clothes in clothes_list %}
+    {% include 'includes/clothes_detail.html' %}
+  {% endfor %}
 </div>
-<button class="btn btn-secondary" hx-get="{% url 'blog:clothes-create-form' outfit.id %}" hx-swap="beforeend" hx-target="#clothes-form-container">
+<button class="btn btn-secondary" hx-get="{% url 'blog:clothes-create' outfit.id %}" hx-swap="beforeend" hx-target="#clothes-form-container">
   Добавить одежду
 </button>
