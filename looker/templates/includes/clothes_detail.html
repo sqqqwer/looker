@@ -8,7 +8,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ clothes.title }}</h5>
           <p class="card-text">Цена: {{ clothes.cost }}</p>
-          <p class="card-text"><a>Ссылка</a></p>
+          <p class="card-text"><a href="{{ clothes.url }}">Ссылка</a></p>
           <button class="btn btn-primary" hx-get="{% url 'blog:clothes-edit' clothes.id %}" type="submit">Редактировать</button>
           <button class="btn btn-primary" hx-get="{% url 'blog:clothes-delete' clothes.id %}" type="submit">Удалить</button>
         </div>
