@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}тест{% endblock %}
+{% block content %}
+  <div hx-get="{% url 'blog:polling_test' %}" hx-trigger="load delay:2s">бла бла</div>
+{% endblock %}
