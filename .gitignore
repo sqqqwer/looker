@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+compose.yaml
+request.http
+
 # Distribution / packaging
 .Python
 build/
