@@ -28,9 +28,11 @@ INSTALLED_APPS = [
 
     'django_htmx',
     'django_bootstrap5',
+    'rest_framework',
 
+    'api.apps.ApiConfig',
+    'outfits.apps.OutfitsConfig',
     'core.apps.CoreConfig',
-    'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
 ]
 
@@ -65,6 +67,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'looker.wsgi.application'
+
+
+ASGI_APPLICATION = 'looker.asgi.application'
 
 
 # Database

@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.urls import reverse
 
 
 OUTFIT_TITLE_MAX_LENGTH = 256
@@ -44,6 +45,7 @@ class ClothesItem(models.Model):
     title = models.CharField('Название',
                              max_length=CLOTHESITEM_TITLE_MAX_LENGTH)
     url = models.URLField('Ссылка')
+    image_url = models.URLField('Ссылка на изображение', null=True, default=None)
 
     outfit = models.ForeignKey(Outfit,
                                on_delete=models.CASCADE,
@@ -57,6 +59,9 @@ class ClothesItem(models.Model):
         default_related_name = 'clothes'
 
         ordering = ('order_number',)
+
+    def get_absolute_url(self):
+        return reverse('parent-detail', kwargs={'clothes_id': str(self.pk)})
 
     def __str__(self):
         return self.title[:CLOTHESITEM_STR_OUTPUT_LIMIT]
